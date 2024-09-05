@@ -14,72 +14,83 @@
 
     <div class="row">
       <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-        <div>
-          <label for="exampleSelect" class="form-label mt-4"
-            >Choose Category</label
-          >
-          <select
-            class="form-select"
-            id="categorySelect"
-            [(ngModel)]="selectedCategoryId"
-          >
-            <option value="0">All Categories</option>
-            <option
-              *ngFor="let category of categories"
-              [value]="category.id"
-            >
-              {{ category.name }}
-            </option>
-          </select>
-        </div>
+        <label for="" class="form-label">Choose Category</label>
+        <select
+          class="form-select form-select-lg"
+          name=""
+          id=""
+          [(ngModel)]="selectedCategoryId"
+        >
+          <option value="0" selected>All Categories</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
+        </select>
       </div>
     </div>
 
     <div class="row">
-      <div
-        *ngFor="let product of products"
-        [class.d-none]="product.categoryId.toString() != selectedCategoryId && selectedCategoryId != '0'"
-        class="col-sm-12 col-md-6 col-lg-4 mb-4"
-      >
+      <ng-container *ngFor="let product of products">
         <div
-          class="card text-dark card-has-bg click-col"
-          style="
-            background-image: url('https://api.unsplash.com/search/collections?page=1&query=office');
+          class="col-sm-12 col-md-6 col-lg-4 mb-4"
+          [class.d-none]="
+            selectedCategoryId != product.categoryId.toString() &&
+            selectedCategoryId != '0'
           "
         >
-          <img
-            class="card-img"
-            [src]="product.imgs[0]"
-            alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?"
-          />
-          <div class="card-img-overlay d-flex flex-column">
-            <div class="card-body">
-              <small class="card-meta mb-2">{{ product.isbn }}</small>
-              <h4 class="card-title mt-0">
-                <a class="text-dark" herf="#">{{ product.author }}</a>
-              </h4>
-              <small class="badge bg-light"
-                ><i class="far fa-clock"></i> $
-                {{ product.price.toFixed(2) }}</small
-              >
-            </div>
-            <div class="card-footer">
-              <div class="media">
-                <img
-                  class="mr-3 rounded-circle"
-                  src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                  alt="Generic placeholder image"
-                  style="max-width: 50px"
-                />
-                <div class="media-body">
-                  <h6 class="my-0 text-dark d-block">{{ product.author }}</h6>
-                  <small>{{ getCategoryName(product.categoryId) }}</small>
+          <div
+            class="card text-dark card-has-bg click-col"
+            style="
+              background-image: url('https://api.unsplash.com/search/collections?page=1&query=office');
+            "
+          >
+            <img
+              class="card-img"
+              [src]="product.imgs[0]"
+              alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?"
+            />
+            <div class="card-img-overlay d-flex flex-column">
+              <div class="card-body">
+                <small class="card-meta mb-2">{{ product.isbn }}</small>
+                <h4 class="card-title mt-0">
+                  <a class="text-dark" herf="#">{{ product.author }}</a>
+                </h4>
+                <small class="badge bg-light me-2">
+                  ${{ product.price.toFixed(2) }}</small
+                >
+                <ng-container [ngSwitch]="product.quantity">
+                  <small *ngSwitchCase="0" class="badge bg-dark"
+                    >Not Available</small
+                  >
+
+                  <small *ngSwitchCase="1" class="badge bg-primary"
+                    >Last item</small
+                  >
+
+                  <small *ngSwitchDefault class="badge bg-light"
+                    >Count: {{ product.quantity }}</small
+                  >
+                </ng-container>
+              </div>
+
+              <div class="card-footer">
+                <div class="media">
+                  <img
+                    class="mr-3 rounded-circle"
+                    src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
+                    alt="Generic placeholder image"
+                    style="max-width: 50px"
+                  />
+                  <div class="media-body">
+                    <h6 class="my-0 text-dark d-block">{{ product.author }}</h6>
+                    <small>{{ getCategoryName(product.categoryId) }}</small>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </section>

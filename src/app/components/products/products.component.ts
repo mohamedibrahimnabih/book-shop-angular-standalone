@@ -71,4 +71,8 @@ export class ProductsComponent {
   //   else 
   //     this.productsFilterd = this.products.filter(p => p.categoryId.toString() === categoryId);
   // }
+
+  trackByItems(index: number, item: IProduct): number {
+    return item.id;
+  }
 }

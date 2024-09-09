@@ -1,24 +1,19 @@
 import { Component } from '@angular/core';
-import { IProduct } from '../../models/iproduct';
+import { IProduct } from '../../../models/iproduct';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ICategory } from '../../models/icategory';
-import { IsbnFormatePipe } from '../../pipes/isbn-formate.pipe';
-import { HighlightProductCartDirective } from '../../directives/highlight-product-cart.directive';
-import { HeaderComponent } from '../header/header.component';
+import { IsbnFormatePipe } from '../../../pipes/isbn-formate.pipe';
+import { HighlightProductCartDirective } from '../../../directives/highlight-product-cart.directive';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, FormsModule, IsbnFormatePipe, HighlightProductCartDirective, HeaderComponent],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  imports: [CommonModule, IsbnFormatePipe, HighlightProductCartDirective],
+  templateUrl: './product.component.html',
+  styleUrl: './product.component.css'
 })
-export class ProductsComponent {
+export class ProductComponent {
   products: IProduct[];
   // productsFilterd: IProduct[];
-  categories: ICategory[];
-  selectedCategoryId: string = '0';
 
   constructor() {
     this.products = [
@@ -53,19 +48,7 @@ export class ProductsComponent {
       ], categoryId: 3 }
     ];
 
-    this.categories = [
-      { id: 1, name: 'Fiction' },
-      { id: 2, name: 'Non-Fiction' },
-      { id: 3, name: 'Poetry' }
-    ];
-
     // this.productsFilterd = this.products;
-  }
-
-  
-  getCategoryName(categoryId: number) : string {
-    const category = this.categories.find(c => c.id === categoryId);
-    return category ? category.name : 'Unknown';
   }
 
   // filterProducts(categoryId: string) : void {

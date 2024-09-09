@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ICategory } from '../../models/icategory';
 import { IsbnFormatePipe } from '../../pipes/isbn-formate.pipe';
+import { HighlightProductCartDirective } from '../../directives/highlight-product-cart.directive';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, IsbnFormatePipe],
+  imports: [CommonModule, FormsModule, IsbnFormatePipe, HighlightProductCartDirective],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -59,6 +60,7 @@ export class ProductsComponent {
 
     // this.productsFilterd = this.products;
   }
+
   
   getCategoryName(categoryId: number) : string {
     const category = this.categories.find(c => c.id === categoryId);

@@ -99,17 +99,24 @@
             </div>
 
             <div class="card-footer">
-              <div class="media">
-                <img
-                  class="mr-3 rounded-circle"
-                  src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                  alt="Generic placeholder image"
-                  style="max-width: 50px"
-                />
-                <div class="media-body">
-                  <h6 class="my-0 text-dark d-block">{{ product.author }}</h6>
-                  <small>{{ getCategoryName(product.categoryId) }}</small>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="media">
+                  <img
+                    class="mr-3 rounded-circle"
+                    src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
+                    alt="Generic placeholder image"
+                    style="max-width: 50px"
+                  />
+                  <div class="media-body">
+                    <h6 class="my-0 text-dark d-block">{{ product.author }}</h6>
+                    <small>{{ getCategoryName(product.categoryId) }}</small>
+                  </div>
                 </div>
+                
+                <!-- Shopping Cart Button on the right -->
+                <button appHighlightProductCart hightLightClass='btn-primary' class="btn btn-light ms-auto">
+                  <i class="bi bi-cart-plus"></i>
+                </button>
               </div>
             </div>
           </div>

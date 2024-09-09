@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { ICategory } from '../../models/icategory';
 import { IsbnFormatePipe } from '../../pipes/isbn-formate.pipe';
 import { HighlightProductCartDirective } from '../../directives/highlight-product-cart.directive';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, FormsModule, IsbnFormatePipe, HighlightProductCartDirective],
+  imports: [CommonModule, FormsModule, IsbnFormatePipe, HighlightProductCartDirective, HeaderComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })

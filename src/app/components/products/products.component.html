@@ -56,12 +56,14 @@
           />
           <div class="card-img-overlay d-flex flex-column">
             <div class="card-body">
-              <small class="card-meta mb-2">{{ product.isbn }}</small>
+              <small class="card-meta mb-2">{{ product.isbn | isbnFormate : "&" }}</small>
               <h4 class="card-title mt-0">
-                <a class="text-dark" herf="#">{{ product.author }}</a>
+                <a class="text-dark text-decoration-none" herf="#">{{
+                  product.title | uppercase
+                }}</a>
               </h4>
               <small class="badge bg-light me-2">
-                ${{ product.price.toFixed(2) }}</small
+                {{ product.price | currency : "EGP" : "symbol" }}</small
               >
               <!-- <ng-container [ngSwitch]="product.quantity">
                 <small *ngSwitchCase="0" class="badge bg-dark"
@@ -85,18 +87,15 @@
               >
               } -->
 
-              @switch (product.quantity.toString()) {
-                @case ('0') {
-                  <small class="badge bg-dark">Not Available</small>
-                }
-                @case ('1') {
-                  <small class="badge bg-primary">Last item</small>
-                }
-                @default {
-                  <small class="badge bg-light"
-                    >Count: {{ product.quantity }}</small>
-                }
-              }
+              @switch (product.quantity.toString()) { @case ('0') {
+              <small class="badge bg-dark">Not Available</small>
+              } @case ('1') {
+              <small class="badge bg-primary">Last item</small>
+              } @default {
+              <small class="badge bg-light"
+                >Count: {{ product.quantity }}</small
+              >
+              } }
             </div>
 
             <div class="card-footer">
@@ -116,6 +115,8 @@
           </div>
         </div>
       </div>
+      } @empty {
+      <h1 class="text-center">There are no items.</h1>
       }
 
       <!-- <ng-container *ngFor="let product of products; trackBy: trackByItems">

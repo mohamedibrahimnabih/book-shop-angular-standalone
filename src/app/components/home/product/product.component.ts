@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../models/iproduct';
 import { CommonModule } from '@angular/common';
 import { IsbnFormatePipe } from '../../../pipes/isbn-formate.pipe';
@@ -17,6 +17,7 @@ export class ProductComponent {
   // productsFilterd: IProduct[];
   @Input() selectedCategoryId: string = '0';
   @Input() categories: ICategory[] = [];
+  @Output() productEvent = new EventEmitter<IProduct>();
 
   constructor() {
     this.products = [
@@ -52,6 +53,10 @@ export class ProductComponent {
     ];
 
     // this.productsFilterd = this.products;
+  }
+
+  sendProduct(product: IProduct) : void {
+    this.productEvent.emit(product);
   }
 
   // filterProducts(categoryId: string) : void {

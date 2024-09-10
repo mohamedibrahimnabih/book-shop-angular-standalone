@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from '../../../models/iproduct';
 import { CommonModule } from '@angular/common';
 import { IsbnFormatePipe } from '../../../pipes/isbn-formate.pipe';
 import { HighlightProductCartDirective } from '../../../directives/highlight-product-cart.directive';
+import { ICategory } from '../../../models/icategory';
 
 @Component({
   selector: 'app-product',
@@ -14,6 +15,8 @@ import { HighlightProductCartDirective } from '../../../directives/highlight-pro
 export class ProductComponent {
   products: IProduct[];
   // productsFilterd: IProduct[];
+  @Input() selectedCategoryId: string = '0';
+  @Input() categories: ICategory[] = [];
 
   constructor() {
     this.products = [
@@ -61,4 +64,9 @@ export class ProductComponent {
   // trackByItems(index: number, item: IProduct): number {
   //   return item.id;
   // }
+
+  getCategoryName(categoryId: number) : string {
+    const category = this.categories.find(c => c.id === categoryId);
+    return category ? category.name : 'Unknown';
+  }
 }

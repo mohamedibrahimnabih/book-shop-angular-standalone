@@ -20,9 +20,4 @@ export class SelectCategoryComponent {
       { id: 3, name: 'Poetry' }
     ];
   }
-
-  getCategoryName(categoryId: number) : string {
-    const category = this.categories.find(c => c.id === categoryId);
-    return category ? category.name : 'Unknown';
-  }
 }

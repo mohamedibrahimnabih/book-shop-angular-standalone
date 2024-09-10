@@ -2,6 +2,10 @@
     @for (product of products; track product.id) {
     <div
       class="col-sm-12 col-md-6 col-lg-4 mb-4"
+      [class.d-none]="
+        selectedCategoryId != product.categoryId.toString() &&
+        selectedCategoryId != '0'
+      "
     >
       <div
         class="card text-dark card-has-bg click-col"
@@ -69,7 +73,7 @@
                 />
                 <div class="media-body">
                   <h6 class="my-0 text-dark d-block">{{ product.author }}</h6>
-                  <small>category</small>
+                  <small>{{ getCategoryName(product.categoryId) }}</small>
                 </div>
               </div>
               
